@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: guardbot-pro
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: DISCORD_CLIENT_ID
+        sync: false
+      - key: DISCORD_GUILD_ID
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: guardbot-data
+      mountPath: /var/data
+      sizeGB: 1
